@@ -1,6 +1,6 @@
 
 import './App.css'
-import { HomeContainer, AboutContainer, ContactContainer, ProductContainer, ProtectContainer } from './containers';
+import { HomeContainer, RegisterContainer, LoginContainer, ListContainer, ProtectContainer } from './containers';
 //import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
 import ProtectLayout from './layouts/ProtectLayout';
@@ -17,16 +17,16 @@ function App() {
           element: <HomeContainer />
         },
         {
-          path: '/about',
-          element: <AboutContainer />
+          path: '/register',
+          element: <RegisterContainer />
         },
         {
-          path: '/contact',
-          element: <ContactContainer />
+          path: '/login',
+          element: <LoginContainer />
         },
         {
-          path: '/product-detail/:id',
-          element: <ProductContainer />
+          path: '/list-detail/:id',
+          element: <ListContainer />
         },
 
       ]
@@ -53,8 +53,8 @@ function App() {
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path='/' element={<HomeContainer />}/>
-            <Route path='/about' element={<AboutContainer />}/>
-            <Route path='/contact' element={<ContactContainer />}/>
+            <Route path='/register' element={<RegisterContainer />}/>
+            <Route path='/login' element={<LoginContainer />}/>
           </Route>
           <Route path='*' element={<h1>404</h1>}/>
         </Routes>

@@ -1,15 +1,19 @@
+import { useSearchParams } from 'react-router-dom';
 import { Input, Text, Button, Card, Table } from '../../components';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
 
 interface DataProps {
-    name: string;
-    age: string;
-    hobby: string;
+    email: string;
+    password: string;
 }
 
-const HomeContainer = () => {
+const LoginContainer = () => {
+
+    const [searchParams] = useSearchParams();
+
+    console.log(searchParams.get('queryKey'))
 
     const [users, setUsers] = useState<DataProps[]>([]);
     const [selectedUser, setSelectedUser] = useState<DataProps>();
@@ -31,19 +35,16 @@ const HomeContainer = () => {
 
     const formMik = useFormik({
         initialValues: selectedUser ?? {
-            name: '',
-            age: '',
-            hobby: ''
+            email: '',
+            password: ''
         },
         onSubmit: (values, { resetForm }) => {
-            // logic edit, kl selectedUser nya itu ada, cari index data itu, kemudian update data array
             setUsers([...users, values])
             resetForm()
         },
         validationSchema:yup.object({
-            name: yup.string().required(),
-            age: yup.string().required(),
-            hobby: yup.string().required()
+            email: yup.string().required(),
+            password: yup.string().required()
         }),
         enableReinitialize: true
     });
@@ -56,9 +57,7 @@ const HomeContainer = () => {
         const findUser = users.find((_, dataIndex) => dataIndex === index);
 
         setSelectedUser(findUser);
-        // formMik.setFieldValue('name', selectedUser?.name)
-        // formMik.setFieldValue('age', selectedUser?.age)
-        // formMik.setFieldValue('hobby', selectedUser?.hobby)
+    
     }
 
     const handleInsertToken = () => {
@@ -67,46 +66,33 @@ const HomeContainer = () => {
 
     return (
         <div style={{display:'flex'}} className='justify-center align-center mt-44'>
-        <Card border={false} className={'flex flex-col gap-2.5'}>
-
+        <Card border={false} >
             <Card border>
-            <form onSubmit={formMik.handleSubmit}>
+            <form onSubmit={formMik.handleSubmit} >
+                
                 <div>
-                    <Text>{'Nama'}</Text>
+                    <Text>{'Email'}</Text>
                     <Input className="block border-neutral-400 border"
-                         name={'name'}
-                         value={formMik.values.name}
-                         onChange={formMik.handleChange('name')}
+                         name={'email'}
+                         value={formMik.values.email}
+                         onChange={formMik.handleChange('email')}
                          />
                          {
-                            formMik.errors.name && (
-                                <Text>{formMik.errors.name}</Text>
-                            )
-                         }
-                </div>
-                <div>
-                    <Text>{'Umur'}</Text>
-                    <Input className="block border-neutral-400 border"
-                         name={'age'}
-                         value={formMik.values.age}
-                         onChange={formMik.handleChange('age')}
-                         />
-                         {
-                            formMik.errors.age && (
-                                <Text>{formMik.errors.age}</Text>
+                            formMik.errors.email && (
+                                <Text>{formMik.errors.email}</Text>
                             )
                          }
                 </div>
                 <div className='my-4'>
-                    <Text>{'Hobi'}</Text>
+                    <Text>{'Password'}</Text>
                     <Input className="block border-neutral-400 border"
-                         name={'hobby'}
-                         value={formMik.values.hobby}
-                         onChange={formMik.handleChange('hobby')}
+                         name={'password'}
+                         value={formMik.values.password}
+                         onChange={formMik.handleChange('password')}
                          />
                          {
-                            formMik.errors.hobby && (
-                                <Text>{formMik.errors.hobby}</Text>
+                            formMik.errors.password && (
+                                <Text>{formMik.errors.password}</Text>
                             )
                          }
                 </div>
@@ -116,16 +102,12 @@ const HomeContainer = () => {
         <Card border>
             <Table headers={[
                 {
-                    label: 'Name',
-                    key: 'name'
+                    label: 'Email',
+                    key: 'email'
                 },
                 {
-                    label: 'Umur',
-                    key: 'age'
-                },
-                {
-                    label: 'Hobi',
-                    key: 'hobby'
+                    label: 'Password',
+                    key: 'password'
                 }
             ]} data={users}
             onEdit={onEdit}
@@ -158,8 +140,8 @@ const HomeContainer = () => {
 
         </Card>
     </Card>
-</div>  
+     </div>   
     )
 }
 
-export default HomeContainer
+export default LoginContainer
