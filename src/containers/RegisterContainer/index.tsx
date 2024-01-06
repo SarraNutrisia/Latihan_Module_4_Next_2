@@ -119,7 +119,7 @@ const RegisterContainer = () => {
                 <Button label={'Submit'} type={'submit'} className={'bg-green-500'}/>
             </form>   
         </Card>
-        <Card border>
+        {/* <Card border>
             <Table headers={[
                 {
                     label: 'Name',
@@ -136,8 +136,8 @@ const RegisterContainer = () => {
             ]} data={users}
             onEdit={onEdit}
             onDelete={onDelete}/>
-        </Card>
-        <Card border>
+        </Card> */}
+        {/* <Card border>
             {step === 1 && (
                 <div>
                     A
@@ -158,11 +158,11 @@ const RegisterContainer = () => {
             <Button label={'Previous'} onClick={handlePrevious} type={'button'} className={'bg-green-500'}/>
             <Button label={'Next'} onClick={handleNext} type={'button'} className={'bg-green-500'}/>
 
-        </Card>
-        <Card border>
+        </Card> */}
+        {/* <Card border>
             <Button label='Login' onClick={handleInsertToken}/>
 
-        </Card>
+        </Card> */}
     </Card>
 </div>
     )

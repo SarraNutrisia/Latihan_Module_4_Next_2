@@ -10,6 +10,7 @@ interface DataProps {
 }
 
 const LoginContainer = () => {
+    const [count, setCount] = useState(0);
 
     const [searchParams] = useSearchParams();
 
@@ -97,9 +98,15 @@ const LoginContainer = () => {
                          }
                 </div>
                 <Button label={'Submit'} type={'submit'} className={'bg-green-500'}/>
+                <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
             </form>   
         </Card>
-        <Card border>
+        {/* <Card border>
             <Table headers={[
                 {
                     label: 'Email',
@@ -112,8 +119,8 @@ const LoginContainer = () => {
             ]} data={users}
             onEdit={onEdit}
             onDelete={onDelete}/>
-        </Card>
-        <Card border>
+        </Card> */}
+        {/* <Card border>
             {step === 1 && (
                 <div>
                     A
@@ -134,11 +141,11 @@ const LoginContainer = () => {
             <Button label={'Previous'} onClick={handlePrevious} type={'button'} className={'bg-green-500'}/>
             <Button label={'Next'} onClick={handleNext} type={'button'} className={'bg-green-500'}/>
 
-        </Card>
-        <Card border>
+        </Card> */}
+        {/* <Card border>
             <Button label='Login' onClick={handleInsertToken}/>
 
-        </Card>
+        </Card> */}
     </Card>
      </div>   
     )
